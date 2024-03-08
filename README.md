@@ -51,7 +51,7 @@ sudo apt install i2c-tools
 sudo i2cdetect -y 1
 ```
 
-If all goes well, you should see a mention of `3c` (0x3c address) mentioned.
+If all goes well, you should see a mention of `3c` (`0x3c` address).
 
 ### Gathering the Python packages
 
