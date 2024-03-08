@@ -18,7 +18,11 @@ Mainly, this displays the following system information:
 -   Memory usage
 -   Disk usage
 
-Also, when a `msg.txt` file is created in the same directory as the Python script, the file contents will be outputted and centered (x & y) on the display. The file then gets removed and there will be a delay before it updates the display again (to either display the next message from said file or to go back to the system information view).
+### Bonus feature
+
+When a `msg.txt` file is created in the same directory as the Python script, the file contents will be outputted and centered (x & y) on the display. The file then gets removed and there will be a delay before it updates the display again (to either display the next message from said file or to go back to the system information view).
+
+This was developed to make use of `TPLink-LightBulb-HTTP`'s last status logging, but it can be used for various other purposes.
 
 ## Configuration
 
