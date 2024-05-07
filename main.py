@@ -13,7 +13,15 @@ import adafruit_ssd1306
 
 print('--- SSD1306 Display SysInfo ---\n\n')
 
-msgFile = os.path.dirname(os.path.abspath(__file__)) + "/msg.txt"
+basePath = os.path.dirname(os.path.abspath(__file__))
+displayOffFileStatus = False
+displayOffFile = basePath + "/displayoff"
+
+# Always show display on boot
+if os.path.isfile(displayOffFile):
+    os.remove(displayOffFile)
+
+msgFile = basePath + "/msg.txt"
 print('Message file to check for: ' + msgFile + '\n\n')
 
 # Create the I2C interface
@@ -67,6 +75,20 @@ def center_text(img, font, text, color=(255, 255, 255)):
 while True:
     # Draw a black filled box to clear the image
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
+
+    # Keep display clear
+    if os.path.isfile(displayOffFile):
+        # Clear display initially
+        if not displayOffFileStatus:
+            disp.fill(0)
+            disp.show()
+            displayOffFileStatus = True
+        # Delay next display update
+        time.sleep(0.5)
+        continue 
+    else:
+        if displayOffFileStatus:
+            displayOffFileStatus = False
 
     # Display message from file temporarily if exists
     if os.path.isfile(msgFile):
